@@ -92,3 +92,5 @@ or formatting nodes, arbitrary code generation, or autonomous authority.
 The in-memory phone adapter is intentionally a toy. Kinly's production identity,
 policy, signed authorization, connectors, device runtime, and recovery machinery
 are not included.
+
+Licensed under the [Apache License 2.0](LICENSE).

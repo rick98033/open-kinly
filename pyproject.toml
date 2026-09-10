@@ -7,6 +7,7 @@ name = "open-kinly"
 version = "0.1.0"
 description = "A minimal reference implementation of schema-constrained semantic compilation for phone-use agents"
 requires-python = ">=3.11"
+license = "Apache-2.0"
 dependencies = [
   "jsonschema>=4.23,<5",
   "PyYAML>=6,<7",
