@@ -1,0 +1,46 @@
+{
+  "calls": [
+    {
+      "capability": "device_battery.get_status",
+      "arguments": {}
+    },
+    {
+      "capability": "media_volume.set",
+      "arguments": {
+        "level": {
+          "ref": {
+            "call": 1,
+            "field": "battery_percent"
+          }
+        }
+      }
+    },
+    {
+      "capability": "text_size.set",
+      "arguments": {
+        "level": {
+          "ref": {
+            "call": 1,
+            "field": "battery_percent"
+          }
+        }
+      }
+    },
+    {
+      "capability": "flashlight.on",
+      "arguments": {}
+    },
+    {
+      "capability": "brightness.decrease",
+      "arguments": {},
+      "when": {
+        "left": {
+          "call": 1,
+          "field": "battery_percent"
+        },
+        "op": "<",
+        "right": 20
+      }
+    }
+  ]
+}

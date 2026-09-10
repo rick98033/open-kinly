@@ -1,0 +1,48 @@
+# This is an assistant-facing projection of the five capabilities used in the
+# public demo. Device dispatch, policy, identity, and authorization declarations
+# deliberately remain outside this reference repository.
+capabilities:
+  - name: device_battery.get_status
+    description: Read the current device battery percentage and charging status when the user asks for battery state.
+    arguments: {}
+    results:
+      battery_percent:
+        type: integer
+        description: Current battery percentage from 0 through 100.
+      charging:
+        type: boolean
+        description: Whether the device is currently charging.
+
+  - name: media_volume.set
+    description: Set exact volume only when the user explicitly names volume or sound level and supplies the percentage.
+    arguments:
+      level:
+        type: integer
+        required: true
+        minimum: 0
+        maximum: 100
+        description: Exact volume percentage from 0 through 100 supplied by the user or an earlier integer result.
+    results: {}
+
+  - name: text_size.set
+    description: Set exact text size only when the user explicitly names text or font size and supplies the percentage.
+    arguments:
+      level:
+        type: integer
+        required: true
+        minimum: 0
+        maximum: 100
+        description: Exact text-size percentage from 0 through 100 supplied by the user or an earlier integer result.
+    results: {}
+
+  - name: flashlight.on
+    description: Turn the device flashlight on when the user explicitly asks for the flashlight or torch to be on.
+    arguments: {}
+    results: {}
+
+  - name: brightness.decrease
+    description: Make the screen dimmer.
+    arguments: {}
+    runtime_defaults:
+      amount: 25
+    results: {}

@@ -1,0 +1,81 @@
+{
+  "artifact": "clean_room_model_authoring",
+  "recorded_at": "2026-09-09T18:11:46Z",
+  "request": "Check my battery percentage. Use that number for both media volume and text size, turn on the flashlight, and lower the brightness if the battery is below 20 percent.",
+  "model": {
+    "name": "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8",
+    "training_or_tuning_by_kinly": false,
+    "temperature": 0,
+    "thinking": false,
+    "calls": 1,
+    "retries": 0
+  },
+  "measurements": {
+    "prompt_tokens": 2851,
+    "completion_tokens": 207,
+    "total_tokens": 3058,
+    "generation_latency_ms": 6349.9,
+    "compiler_latency_ms": 0.395
+  },
+  "source_fingerprints": {
+    "prompt_sha256": "852385d36cf08f457e6a121d701e52cc2466c4d46944603c7e875d638963d8db",
+    "schema_sha256": "98eb9a86bf7a8f62d56f4a904af2c3230f2a675cbe7f9773ebce115b8704cb4e",
+    "catalog_sha256": "9ce137c0993f34280df501ec4e047ec5d83ca3f63a1bbe2d8639bac51fc06e81"
+  },
+  "authored_program": {
+    "calls": [
+      {
+        "capability": "device_battery.get_status",
+        "arguments": {}
+      },
+      {
+        "capability": "media_volume.set",
+        "arguments": {
+          "level": {
+            "ref": {
+              "call": 1,
+              "field": "battery_percent"
+            }
+          }
+        }
+      },
+      {
+        "capability": "text_size.set",
+        "arguments": {
+          "level": {
+            "ref": {
+              "call": 1,
+              "field": "battery_percent"
+            }
+          }
+        }
+      },
+      {
+        "capability": "flashlight.on",
+        "arguments": {}
+      },
+      {
+        "capability": "brightness.decrease",
+        "arguments": {},
+        "when": {
+          "left": {
+            "call": 1,
+            "field": "battery_percent"
+          },
+          "op": "<",
+          "right": 20
+        }
+      }
+    ]
+  },
+  "verification": {
+    "structured_output_valid": true,
+    "semantic_match_to_expected_program": true,
+    "compiled_graph_nodes": 5,
+    "dependency_edges": 3,
+    "direct_result_references": 2,
+    "guard_references": 1,
+    "independent_nodes": 1
+  },
+  "claim_boundary": "This record establishes first-sample model authoring and deterministic compilation. Runtime behavior is established separately."
+}
